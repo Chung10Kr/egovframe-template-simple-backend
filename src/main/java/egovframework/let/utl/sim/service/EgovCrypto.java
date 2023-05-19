@@ -33,7 +33,7 @@ import lombok.extern.slf4j.Slf4j;
  * </pre>
  */
 @Slf4j
-public class EgovFileScrty {
+public class EgovCrypto {
 	// 파일구분자
 	static final String FILE_SEPARATOR = System.getProperty("file.separator");
 	// 버퍼사이즈

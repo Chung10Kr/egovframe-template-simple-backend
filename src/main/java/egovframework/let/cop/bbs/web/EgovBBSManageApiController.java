@@ -37,7 +37,7 @@ import egovframework.let.cop.bbs.service.BoardMasterVO;
 import egovframework.let.cop.bbs.service.BoardVO;
 import egovframework.let.cop.bbs.service.EgovBBSAttributeManageService;
 import egovframework.let.cop.bbs.service.EgovBBSManageService;
-import egovframework.let.utl.sim.service.EgovFileScrty;
+import egovframework.let.utl.sim.service.EgovCrypto;
 
 /**
  * 게시물 관리를 위한 컨트롤러 클래스
@@ -302,7 +302,7 @@ public class EgovBBSManageApiController {
 
 			boardVO.setLastUpdusrId(user.getUniqId());
 			boardVO.setNtcrNm(""); // dummy 오류 수정 (익명이 아닌 경우 validator 처리를 위해 dummy로 지정됨) 
-			boardVO.setPassword(EgovFileScrty.encryptPassword("", user.getUniqId())); // dummy 오류 수정 (익명이 아닌 경우 validator 처리를 위해 dummy로 지정됨)
+			boardVO.setPassword(EgovCrypto.encryptPassword("", user.getUniqId())); // dummy 오류 수정 (익명이 아닌 경우 validator 처리를 위해 dummy로 지정됨)
 			boardVO.setNttCn(unscript(boardVO.getNttCn())); // XSS 방지
 
 			bbsMngService.updateBoardArticle(boardVO);
@@ -360,7 +360,7 @@ public class EgovBBSManageApiController {
 			boardVO.setBbsId(boardVO.getBbsId());
 
 			boardVO.setNtcrNm(""); // dummy 오류 수정 (익명이 아닌 경우 validator 처리를 위해 dummy로 지정됨)
-			boardVO.setPassword(EgovFileScrty.encryptPassword("", user.getUniqId())); // dummy 오류 수정 (익명이 아닌 경우 validator 처리를 위해 dummy로 지정됨)
+			boardVO.setPassword(EgovCrypto.encryptPassword("", user.getUniqId())); // dummy 오류 수정 (익명이 아닌 경우 validator 처리를 위해 dummy로 지정됨)
 			// board.setNttCn(unscript(board.getNttCn())); // XSS 방지
 
 			bbsMngService.insertBoardArticle(boardVO);
@@ -421,7 +421,7 @@ public class EgovBBSManageApiController {
 			boardVO.setReplyLc(Integer.toString(Integer.parseInt(boardVO.getReplyLc()) + 1));
 
 			boardVO.setNtcrNm(""); // dummy 오류 수정 (익명이 아닌 경우 validator 처리를 위해 dummy로 지정됨)
-			boardVO.setPassword(EgovFileScrty.encryptPassword("", user.getUniqId())); // dummy 오류 수정 (익명이 아닌 경우 validator 처리를 위해 dummy로 지정됨)
+			boardVO.setPassword(EgovCrypto.encryptPassword("", user.getUniqId())); // dummy 오류 수정 (익명이 아닌 경우 validator 처리를 위해 dummy로 지정됨)
 
 			boardVO.setNttCn(unscript(boardVO.getNttCn())); // XSS 방지
 

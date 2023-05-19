@@ -17,7 +17,7 @@ import egovframework.com.cmm.service.ResultVO;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import egovframework.com.jwt.config.JwtVerification;
 import egovframework.let.uat.esm.service.EgovSiteManagerService;
-import egovframework.let.utl.sim.service.EgovFileScrty;
+import egovframework.let.utl.sim.service.EgovCrypto;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -90,8 +90,8 @@ public class EgovSiteManagerApiController {
 		String new_password = param.get("new_password");
 		String login_id = user.getId();
 		Map<String,Object> resultMap = new HashMap<String,Object>();
-		resultMap.put("old_password", EgovFileScrty.encryptPassword(old_password, login_id));
-		resultMap.put("new_password", EgovFileScrty.encryptPassword(new_password, login_id));
+		resultMap.put("old_password", EgovCrypto.encryptPassword(old_password, login_id));
+		resultMap.put("new_password", EgovCrypto.encryptPassword(new_password, login_id));
 		resultMap.put("login_id", login_id);
 		log.debug("===>>> loginVO.getId() = "+login_id);
 		Integer result = siteManagerService.updateAdminPassword(resultMap); //저장성공 시 1, 실패 시 0 반환

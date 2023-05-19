@@ -4,7 +4,7 @@ import egovframework.com.cmm.LoginVO;
 import egovframework.let.uat.uia.service.EgovLoginService;
 import egovframework.let.utl.fcc.service.EgovNumberUtil;
 import egovframework.let.utl.fcc.service.EgovStringUtil;
-import egovframework.let.utl.sim.service.EgovFileScrty;
+import egovframework.let.utl.sim.service.EgovCrypto;
 
 import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
 
@@ -45,7 +45,7 @@ public class EgovLoginServiceImpl extends EgovAbstractServiceImpl implements Ego
 	public LoginVO actionLogin(LoginVO vo) throws Exception {
 
 		// 1. 입력한 비밀번호를 암호화한다.
-		String enpassword = EgovFileScrty.encryptPassword(vo.getPassword(), vo.getId());
+		String enpassword = EgovCrypto.encryptPassword(vo.getPassword(), vo.getId());
 		vo.setPassword(enpassword);
 
 		// 2. 아이디와 암호화된 비밀번호가 DB와 일치하는지 확인한다.
@@ -114,7 +114,7 @@ public class EgovLoginServiceImpl extends EgovAbstractServiceImpl implements Ego
 
 		// 3. 임시 비밀번호를 암호화하여 DB에 저장한다.
 		LoginVO pwVO = new LoginVO();
-		String enpassword = EgovFileScrty.encryptPassword(newpassword, vo.getId());
+		String enpassword = EgovCrypto.encryptPassword(newpassword, vo.getId());
 		pwVO.setId(vo.getId());
 		pwVO.setPassword(enpassword);
 		pwVO.setUserSe(vo.getUserSe());
